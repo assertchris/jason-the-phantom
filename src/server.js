@@ -14,6 +14,8 @@ app.use(function(error, request, response, next) {
     });
 });
 
-app.listen(4321, function() {
-    console.log("phpunit-ghost server running at http://localhost:4321");
+var port = process.env.JASON_THE_PHANTOM_PORT || 4321;
+
+app.listen(port, function() {
+    console.log("phpunit-ghost server running at http://localhost:" + port);
 });

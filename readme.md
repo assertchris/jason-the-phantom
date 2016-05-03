@@ -31,7 +31,7 @@ Request format:
 ```sh
 $ curl
     --request GET
-    http://localhost:4321/session
+    "http://localhost:4321/session"
 ```
 
 Response format:
@@ -62,7 +62,7 @@ Request format:
 ```sh
 $ curl
     --request POST
-    http://localhost:4321/session
+    "http://localhost:4321/session"
 ```
 
 Response format:
@@ -83,7 +83,7 @@ This endpoint returns an identified session.
 ```sh
 $ curl
     --request GET
-    http://localhost:4321/session/4
+    "http://localhost:4321/session/4"
 ```
 
 Response format:
@@ -104,7 +104,7 @@ This endpoint returns a list of pages for the current session.
 ```sh
 $ curl
     --request GET
-    http://localhost:4321/session/4/page
+    "http://localhost:4321/session/4/page"
 ```
 
 Response format:
@@ -147,7 +147,7 @@ Request format:
 ```sh
 $ curl
     --request POST
-    http://localhost:4321/session/4/page
+    "http://localhost:4321/session/4/page"
 ```
 
 Response format:
@@ -172,7 +172,7 @@ This endpoint returns an identified page.
 ```sh
 $ curl
     --request GET
-    http://localhost:4321/session/4/page/4
+    "http://localhost:4321/session/4/page/4"
 ```
 
 Response format:
@@ -198,8 +198,8 @@ Future requests to [view the page](#view-page) will have the address, status, an
 ```sh
 $ curl
     --request POST
-    --data address=http%3A%2F%2Fassertchris.io
-    http://localhost:4321/session/4/page/4/visit
+    --data "address=http%3A%2F%2Fassertchris.io"
+    "http://localhost:4321/session/4/page/4/visit"
 ```
 
 Response format:
@@ -224,8 +224,8 @@ This endpoint runs a provided script on the page, and assigns the returned value
 ```sh
 $ curl
     --request POST
-    --data script=function%28%29+%7B+document.write%28%27hello+world%27%29%3B+return+%27success%27%3B+%7D
-    http://localhost:4321/session/4/page/4/run
+    --data "script=document.write%28%27hello%27%29%3B+return+%27success%27%3B"
+    "http://localhost:4321/session/4/page/4/run"
 ```
 
 Response format:
@@ -238,15 +238,7 @@ Response format:
         "returned": "success",
         "address": "https://medium.com/@assertchris",
         "status": "success",
-        "body": "<html><head></head><body>hello world</body></html>"
+        "body": "<html><head></head><body>hello</body></html>"
     }
 }
 ```
-
-## Roadmap
-
-1. Click an element on a page
-2. Type a value in a form field on a page
-3. Attach a file to a form field on a page
-4. Select a dropdown option on a page
-5. Submit a form on a page

@@ -9,8 +9,10 @@ module.exports = function(request, response, shared) {
         throw new Error("script parameter missing");
     }
 
+    var script = "function(){" + request.body.script + ";}";
+
     page.instance
-        .evaluateJavaScript(request.body.script)
+        .evaluateJavaScript(script)
         .then(function(returned) {
             page.returned = returned;
 
