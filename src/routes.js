@@ -8,7 +8,8 @@ var handlers = {
     "session": {
         "list": use("Jason/Handler/Session/List"),
         "create": use("Jason/Handler/Session/Create"),
-        "view": use("Jason/Handler/Session/View")
+        "view": use("Jason/Handler/Session/View"),
+        "close": use("Jason/Handler/Session/Close")
     },
     "page": {
         "list": use("Jason/Handler/Page/List"),
@@ -39,6 +40,10 @@ module.exports = function(app) {
 
     app.get("/session/:sessionId", function(request, response) {
         handlers.session.view(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/close", function(request, response) {
+        handlers.session.close(request, response, shared);
     });
 
     app.get("/session/:sessionId/page", function(request, response) {
