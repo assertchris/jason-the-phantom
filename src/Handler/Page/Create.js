@@ -1,6 +1,12 @@
 var reduce = use("Jason/Reducer/FindOrFail");
 var formatter = use("Jason/Formatter/Page");
 
+function filter(requests, url) {
+    return requests.filter(function(request) {
+        return request !== url;
+    })
+}
+
 module.exports = function(request, response, shared) {
     var session = reduce(request.params.sessionId, shared.sessions, response);
 
@@ -15,8 +21,30 @@ module.exports = function(request, response, shared) {
                 "returned": null,
                 "address": null,
                 "status": null,
-                "body": null
+                "body": null,
+                "width": null,
+                "height": null,
+                "left": null,
+                "top": null,
+                "factor": null,
+                "requests": []
             };
+
+            instance.on("onResourceRequested", function(data) {
+                created.requests.push(data.url);
+            });
+
+            instance.on("onResourceReceived", function(data) {
+                created.requests = filter(created.requests, data.url);
+            });
+
+            instance.on("onResourceError", function(data) {
+                created.requests = filter(created.requests, data.url);
+            });
+
+            instance.on("onResourceTimeout", function(data) {
+                created.requests = filter(created.requests, data.url);
+            });
 
             session.pages.push(created);
 

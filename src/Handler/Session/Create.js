@@ -3,7 +3,7 @@ var formatter = use("Jason/Formatter/Session");
 
 module.exports = function(request, response, shared) {
     phantom
-        .create()
+        .create(["--ignore-ssl-errors=yes", "--web-security=false"])
         .then(function(phantom) {
             var id = shared.sessionId++;
 

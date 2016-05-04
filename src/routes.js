@@ -16,7 +16,12 @@ var handlers = {
         "create": use("Jason/Handler/Page/Create"),
         "view": use("Jason/Handler/Page/View"),
         "visit": use("Jason/Handler/Page/Visit"),
-        "run": use("Jason/Handler/Page/Run")
+        "run": use("Jason/Handler/Page/Run"),
+        "resize": use("Jason/Handler/Page/Resize"),
+        "scroll": use("Jason/Handler/Page/Scroll"),
+        "zoom": use("Jason/Handler/Page/Zoom"),
+        "capture": use("Jason/Handler/Page/Capture"),
+        "wait": use("Jason/Handler/Page/Wait")
     }
 };
 
@@ -64,5 +69,25 @@ module.exports = function(app) {
 
     app.post("/session/:sessionId/page/:pageId/run", parser, function(request, response) {
         handlers.page.run(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/page/:pageId/resize", parser, function(request, response) {
+        handlers.page.resize(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/page/:pageId/scroll", parser, function(request, response) {
+        handlers.page.scroll(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/page/:pageId/zoom", parser, function(request, response) {
+        handlers.page.zoom(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/page/:pageId/capture", function(request, response) {
+        handlers.page.capture(request, response, shared);
+    });
+
+    app.post("/session/:sessionId/page/:pageId/wait", parser, function(request, response) {
+        handlers.page.wait(request, response, shared);
     });
 };
