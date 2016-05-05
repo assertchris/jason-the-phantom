@@ -1,5 +1,5 @@
-var reduce = use("Jason/Reducer/FindOrFail");
-var format = use("Jason/Formatter/Page");
+var reduce = use("Undemanding/Reducer/FindOrFail");
+var format = use("Undemanding/Formatter/Page");
 
 function respond(response, page) {
     return response.send({

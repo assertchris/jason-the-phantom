@@ -1,10 +1,10 @@
 var Ioc = require("adonis-fold").Ioc;
-Ioc.autoload("Jason", __dirname);
+Ioc.autoload("Undemanding", __dirname);
 
 var express = require("express");
 var app = express();
 
-var routes = use("Jason/routes");
+var routes = use("Undemanding/routes");
 routes(app);
 
 app.use(function(error, request, response, next) {
@@ -17,5 +17,5 @@ app.use(function(error, request, response, next) {
 var port = process.env.JASON_THE_PHANTOM_PORT || 4321;
 
 app.listen(port, function() {
-    console.log("phpunit-ghost server running at http://localhost:" + port);
+    console.log("server running at http://localhost:" + port);
 });

@@ -1,244 +1,32 @@
-# Jason The Phantom
+# Undemanding Server
 
-Interact with PhantomJS through a JSON interface.
+Interact with remote pages through an HTTP server.
+
+## Documentation
+
+I had a lot of this, and then I added a ton of new functionality. So I want to start the documentation over, when things have settled down a bit. Feel free to get the process going by submitting a pull requests with some additions to this page, or markdown files in a `docs` folder...
+
+## Endpoints
+
+1. `GET /session` List sessions
+2. `POST /session` Start a new session
+3. `GET /session/{session}` View session details
+4. `POST /session/{session}/close` Close a session
+5. `GET /session/{session}/page` List pages
+6. `POST /session/{session}/page` Create a new page
+7. `GET /session/{session}/page/{page}` View page details
+8. `POST /session/{session}/page/{page}/visit` Open new address in the page
+9. `POST /session/{session}/page/{page}/run` Run a script in the page
+10. `POST /session/{session}/page/{page}/resize` Resize the page
+11. `POST /session/{session}/page/{page}/scroll` Scroll the page
+12. `POST /session/{session}/page/{page}/zoom` Zoom the page
+13. `POST /session/{session}/page/{page}/wait` Wait until network traffic stops for the page
+14. `POST /session/{session}/page/{page}/capture` Capture PNG image data for the page
 
 ## Installation
 
 ```sh
-$ git clone git@github.com:assertchris/jason-the-phantom.git .
+$ git clone git@github.com:undemanding/server.git .
 $ npm install
 $ node src/server.js
-```
-
-## Endpoints
-
-1. [List Sessions](#list-sessions)
-2. [Create Session](#create-session)
-3. [View Session](#view-session)
-4. [List Pages](#list-pages)
-5. [Create Page](#create-page)
-6. [View Page](#view-page)
-7. [Visit Address With Page](#visit-address-with-page)
-8. [Run JavaScript Code On Page](#run-javascript-code-on-page)
-
-### List Sessions
-
-Jason supports multiple concurrent sessions. Each time you [create a new session](#create-session),
-you'll get a unique session identifier. This endpoint returns a list of open sessions.
-
-Request format:
-
-```sh
-$ curl
-    --request GET
-    "http://localhost:4321/session"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "sessions": [
-        {
-            "id": 1
-        },
-        {
-            "id": 2
-        },
-        {
-            "id": 3
-        }
-    ]
-}
-```
-
-### Create Session
-
-This endpoint creates a new session, and returns its unique identifier.
-
-Request format:
-
-```sh
-$ curl
-    --request POST
-    "http://localhost:4321/session"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "session": {
-        "id": 4
-    }
-}
-```
-
-### View Session
-
-This endpoint returns an identified session.
-
-```sh
-$ curl
-    --request GET
-    "http://localhost:4321/session/4"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "session": {
-        "id": 4
-    }
-}
-```
-
-### List Pages
-
-This endpoint returns a list of pages for the current session.
-
-```sh
-$ curl
-    --request GET
-    "http://localhost:4321/session/4/page"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "pages": [
-        {
-            "id": 1,
-            "returned": null,
-            "address": null,
-            "status": null,
-            "body": null
-        },
-        {
-            "id": 2,
-            "returned": null,
-            "address": null,
-            "status": null,
-            "body": null
-        },
-        {
-            "id": 3,
-            "returned": null,
-            "address": null,
-            "status": null,
-            "body": null
-        }
-    ]
-}
-```
-
-### Create Page
-
-This endpoint creates a new page in the current session, and returns its unique identifier.
-
-Request format:
-
-```sh
-$ curl
-    --request POST
-    "http://localhost:4321/session/4/page"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "page": {
-        "id": 4,
-        "returned": null,
-        "address": null,
-        "status": null,
-        "body": null
-    }
-}
-```
-
-### View Page
-
-This endpoint returns an identified page.
-
-```sh
-$ curl
-    --request GET
-    "http://localhost:4321/session/4/page/4"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "page": {
-        "id": 4,
-        "returned": null,
-        "address": null,
-        "status": null,
-        "body": null
-    }
-}
-```
-
-### Visit Address With Page
-
-This endpoint opens an address in an identified page, as though you were opening it in a browser.
-Future requests to [view the page](#view-page) will have the address, status, and body.
-
-```sh
-$ curl
-    --request POST
-    --data "address=http%3A%2F%2Fassertchris.io"
-    "http://localhost:4321/session/4/page/4/visit"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "page": {
-        "id": 4,
-        "returned": null,
-        "address": "https://medium.com/@assertchris",
-        "status": "success",
-        "body": "..."
-    }
-}
-```
-
-### Run JavaScript Code On Page
-
-This endpoint runs a provided script on the page, and assigns the returned value to the page.
-
-```sh
-$ curl
-    --request POST
-    --data "script=document.write%28%27hello%27%29%3B+return+%27success%27%3B"
-    "http://localhost:4321/session/4/page/4/run"
-```
-
-Response format:
-
-```json
-{
-    "status": "ok",
-    "page": {
-        "id": 4,
-        "returned": "success",
-        "address": "https://medium.com/@assertchris",
-        "status": "success",
-        "body": "<html><head></head><body>hello</body></html>"
-    }
-}
 ```

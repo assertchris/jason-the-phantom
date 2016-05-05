@@ -1,5 +1,5 @@
-var reduce = use("Jason/Reducer/FindOrFail");
-var format = use("Jason/Formatter/page");
+var reduce = use("Undemanding/Reducer/FindOrFail");
+var format = use("Undemanding/Formatter/Page");
 
 module.exports = function(request, response, shared) {
     var session = reduce(request.params.sessionId, shared.sessions, response);

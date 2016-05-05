@@ -1,4 +1,4 @@
-var reduce = use("Jason/Reducer/FindOrFail");
+var reduce = use("Undemanding/Reducer/FindOrFail");
 
 module.exports = function(request, response, shared) {
     var session = reduce(request.params.sessionId, shared.sessions, response);

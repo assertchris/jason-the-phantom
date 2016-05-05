@@ -1,5 +1,5 @@
-var reduce = use("Jason/Reducer/FindOrFail");
-var formatter = use("Jason/Formatter/Page");
+var reduce = use("Undemanding/Reducer/FindOrFail");
+var formatter = use("Undemanding/Formatter/Page");
 
 function filter(requests, url) {
     return requests.filter(function(request) {

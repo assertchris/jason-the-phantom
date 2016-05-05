@@ -6,22 +6,22 @@ parser = parser.urlencoded({
 
 var handlers = {
     "session": {
-        "list": use("Jason/Handler/Session/List"),
-        "create": use("Jason/Handler/Session/Create"),
-        "view": use("Jason/Handler/Session/View"),
-        "close": use("Jason/Handler/Session/Close")
+        "list": use("Undemanding/Handler/Session/List"),
+        "create": use("Undemanding/Handler/Session/Create"),
+        "view": use("Undemanding/Handler/Session/View"),
+        "close": use("Undemanding/Handler/Session/Close")
     },
     "page": {
-        "list": use("Jason/Handler/Page/List"),
-        "create": use("Jason/Handler/Page/Create"),
-        "view": use("Jason/Handler/Page/View"),
-        "visit": use("Jason/Handler/Page/Visit"),
-        "run": use("Jason/Handler/Page/Run"),
-        "resize": use("Jason/Handler/Page/Resize"),
-        "scroll": use("Jason/Handler/Page/Scroll"),
-        "zoom": use("Jason/Handler/Page/Zoom"),
-        "capture": use("Jason/Handler/Page/Capture"),
-        "wait": use("Jason/Handler/Page/Wait")
+        "list": use("Undemanding/Handler/Page/List"),
+        "create": use("Undemanding/Handler/Page/Create"),
+        "view": use("Undemanding/Handler/Page/View"),
+        "visit": use("Undemanding/Handler/Page/Visit"),
+        "run": use("Undemanding/Handler/Page/Run"),
+        "resize": use("Undemanding/Handler/Page/Resize"),
+        "scroll": use("Undemanding/Handler/Page/Scroll"),
+        "zoom": use("Undemanding/Handler/Page/Zoom"),
+        "capture": use("Undemanding/Handler/Page/Capture"),
+        "wait": use("Undemanding/Handler/Page/Wait")
     }
 };
 

@@ -1,5 +1,5 @@
 var phantom = require("phantom");
-var formatter = use("Jason/Formatter/Session");
+var formatter = use("Undemanding/Formatter/Session");
 
 module.exports = function(request, response, shared) {
     phantom

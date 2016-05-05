@@ -1,7 +1,7 @@
 var fs = require("fs");
 var path = require("path");
-var reduce = use("Jason/Reducer/FindOrFail");
-var format = use("Jason/Formatter/Page");
+var reduce = use("Undemanding/Reducer/FindOrFail");
+var format = use("Undemanding/Formatter/Page");
 
 function renderPage(response, page) {
     return page.instance
