@@ -14,8 +14,9 @@ app.use(function(error, request, response, next) {
     });
 });
 
-var port = process.env.JASON_THE_PHANTOM_PORT || 4321;
+var host = process.env.UNDEMANDING_SERVER_HOST || "localhost";
+var port = process.env.UNDEMANDING_SERVER_PORT || 4321;
 
-app.listen(port, function() {
-    console.log("server running at http://localhost:" + port);
+app.listen(port, host, function() {
+    console.log("server running at http://" + host + ":" + port);
 });
