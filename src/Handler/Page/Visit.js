@@ -26,6 +26,11 @@ module.exports = function(request, response, shared) {
         .then(function(address) {
             page.address = address;
 
+            return page.instance.includeJs(
+                "https://code.jquery.com/jquery-3.1.0.min.js"
+            );
+        })
+        .then(function() {
             return response.send({
                 "status": "ok",
                 "page": format(page)
