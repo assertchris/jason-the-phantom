@@ -1,6 +1,6 @@
 {
   "name": "undemanding-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
     "adonis-fold": "3.0.1",
     "body-parser": "1.15.0",
